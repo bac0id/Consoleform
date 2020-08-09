@@ -74,22 +74,7 @@ void run_example_2()
 }
 int main()
 {
-	run_example_2();
+	run_example_1();
 	_getch();
 	return 0;
 }
-
-//
-//	Text* txts = new Text[3]{
-//		Text(1,2,"Hello World!"),
-//		Text(2,6,"1234"),
-//		Text(4,10,"°¡11°¡"),
-//	};
-//	Form* fm = new Form(8, 6, 0, 0, txts, 3);
-//	SplitLine* sp = new SplitLine(true, 3, fm);
-//	fm->Draw(false);
-//	sp->Draw();
-//
-//
-//	_getch();
-//}
