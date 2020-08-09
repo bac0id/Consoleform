@@ -10,8 +10,8 @@ using namespace std;
 */
 Form::Form()
 {
-	Rect r = Rect{ 0, 0, 0, 0 };
-	this->Transform = r;
+	this->Transform = Rect{ 0, 0, 0, 0 };
+	this->Parent = nullptr;
 	this->Texts = nullptr;
 	this->TextCnt = 0;
 }
@@ -23,10 +23,10 @@ Form::Form()
 		startY: 起点Y坐标
 返回：	窗口实例。
 */
-Form::Form(int x, int y, int startX, int startY)
+Form::Form(int sizeX, int sizeY, int locX, int locY)
 {
-	Rect r = Rect{ x, y, startX, startY };
-	this->Transform = r;
+	this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	this->Parent = nullptr;
 	this->Texts = nullptr;
 	this->TextCnt = 0;
 }
@@ -42,12 +42,29 @@ Form::Form(int x, int y, int startX, int startY)
 */
 Form::Form(int sizeX, int sizeY, int locX, int locY, Text* texts, int textCnt)
 {
-	Rect r = Rect{ sizeX, sizeY, locX, locY };
-	this->Transform = r;
+	this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	this->Parent = nullptr;
+	this->Texts = texts;
 	for (int i = 0; i < textCnt; ++i) {
 		(texts + i)->Parent = this;
 	}
+	this->TextCnt = textCnt;
+}
+Form::Form(int sizeX, int sizeY, int locX, int locY, Component* parent)
+{
+	this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	this->Parent = parent;
+	this->Texts = nullptr;
+	this->TextCnt = 0;
+}
+Form::Form(int sizeX, int sizeY, int locX, int locY, Component* parent, Text* texts, int textCnt)
+{
+	this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	this->Parent = parent;
 	this->Texts = texts;
+	for (int i = 0; i < textCnt; ++i) {
+		(texts + i)->Parent = this;
+	}
 	this->TextCnt = textCnt;
 }
 /*
@@ -58,6 +75,7 @@ Form::Form(int sizeX, int sizeY, int locX, int locY, Text* texts, int textCnt)
 Form::Form(Rect* transform)
 {
 	this->Transform = *transform;
+	this->Parent = nullptr;
 	this->Texts = nullptr;
 	this->TextCnt = 0;
 }
@@ -71,10 +89,28 @@ Form::Form(Rect* transform)
 Form::Form(Rect* transform, Text* texts, int textCnt)
 {
 	this->Transform = *transform;
+	this->Parent = nullptr;
+	this->Texts = texts;
 	for (int i = 0; i < textCnt; ++i) {
 		(texts + i)->Parent = this;
 	}
+	this->TextCnt = textCnt;
+}
+Form::Form(Rect* transform, Component* parent)
+{
+	this->Transform = *transform;
+	this->Parent = parent;
+	this->Texts = nullptr;
+	this->TextCnt = 0;
+}
+Form::Form(Rect* transform, Component* parent, Text* texts, int textCnt)
+{
+	this->Transform = *transform;
+	this->Parent = parent;
 	this->Texts = texts;
+	for (int i = 0; i < textCnt; ++i) {
+		(texts + i)->Parent = this;
+	}
 	this->TextCnt = textCnt;
 }
 /*
@@ -93,7 +129,25 @@ void Form::Draw()
 */
 void Form::Draw(bool fill)
 {
-	Display::DrawRect(&this->Transform, fill);
+	int locX = this->Transform.locX;
+	int locY = this->Transform.locY;
+	Component* cur = this->Parent;
+	if (cur != nullptr) {
+		do {
+			locX += cur->Transform.locX;
+			locY += cur->Transform.locY;
+			cur = cur->Parent;
+		} while (cur != nullptr);
+		Display::DrawRect(this->Transform.sizeX,
+			this->Transform.sizeY,
+			locX,
+			locY,
+			fill);
+	}
+	else
+	{
+		Display::DrawRect(&this->Transform, fill);
+	}
 	for (int i = 0; i < this->TextCnt; ++i) {
 		(Texts + i)->Draw();
 	}

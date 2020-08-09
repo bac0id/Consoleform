@@ -12,16 +12,17 @@ public:
 	//构造器
 	Text();
 	Text(int x, int y);
-	Text(int x, int y, Component* parent);
+	Text(int x, int y, int color);
 	Text(int x, int y, const char* text);
 	Text(int x, int y, string text);
-	Text(int x, int y, const char* text, Component* parent);
-	Text(int x, int y, string text, Component* parent);
-	Text(int x, int y, int color);
 	Text(int x, int y, const char* text, int color);
 	Text(int x, int y, string text, int color);
-	Text(int x, int y, const char* text, int color, Component* parent);
-	Text(int x, int y, string text, int color, Component* parent);
+	Text(int x, int y, Component* parent);
+	Text(int x, int y, Component* parent, int color);
+	Text(int x, int y, Component* parent, const char* text);
+	Text(int x, int y, Component* parent, string text);
+	Text(int x, int y, Component* parent, const char* text, int color);
+	Text(int x, int y, Component* parent, string text, int color);
 	//得到文本内的字符串
 	string GetStr();
 	//设置文本内的字符串
@@ -32,6 +33,8 @@ public:
 	void SetColor(int color);
 	//聚焦，将光标移动到文本内
 	void Focus();
+	//在文本内输入
+	void Input();
 	//清空文本
 	void Clear();
 	//绘制文本

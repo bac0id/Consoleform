@@ -19,7 +19,7 @@ public:
 	//获得光标坐标
 	static COORD GetCursorPos();
 	//设置光标可见度
-	static void SetCursorVisible(bool visible);
+	static void SetCursorVisibility(bool visible);
 	//设置窗口尺寸
 	static void SetConsoleSize(int x, int y);
 	//设置字体颜色

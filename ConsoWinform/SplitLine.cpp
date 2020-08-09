@@ -1,5 +1,4 @@
 #include "SplitLine.h"
-
 SplitLine::SplitLine(bool isHorizon, int offset, int length)
 {
 	Rect r;
@@ -29,7 +28,7 @@ SplitLine::SplitLine(bool isHorizon, int offset, Component* parent)
 		r.locY = 0;
 	}
 	else {
-		r.sizeX = parent->Transform.sizeY << 1;
+		r.sizeX = parent->Transform.sizeX;
 		r.sizeY = 0;
 		r.locX = 0;
 		r.locY = offset;

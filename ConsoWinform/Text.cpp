@@ -32,15 +32,15 @@ Text::Text(int x, int y)
 文本的构造函数
 参数：	x: 起点X坐标
 		y: 起点Y坐标
-		parent: 父组件的位置信息
+		color: 文本颜色
 返回：	Text实例
 */
-Text::Text(int x, int y, Component* parent)
+Text::Text(int x, int y, int color)
 {
 	this->Str = "";
 	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
+	this->Color = color;
+	this->Parent = nullptr;
 }
 /*
 文本的构造函数
@@ -69,50 +69,6 @@ Text::Text(int x, int y, string text)
 	this->Str = text;
 	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT,x, y };
 	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = nullptr;
-}
-/*
-文本的构造函数
-参数：	x: 起点X坐标
-		y: 起点Y坐标
-		text: 文本内的字符串
-		parent: 父组件的位置信息
-返回：	Text实例
-*/
-Text::Text(int x, int y, const char* text, Component* parent)
-{
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
-}
-/*
-文本的构造函数
-参数：	x: 起点X坐标
-		y: 起点Y坐标
-		text: 文本内的字符串
-		parent: 父组件的位置信息
-返回：	Text实例
-*/
-Text::Text(int x, int y, string text, Component* parent)
-{
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
-}
-/*
-文本的构造函数
-参数：	x: 起点X坐标
-		y: 起点Y坐标
-		color: 文本颜色
-返回：	Text实例
-*/
-Text::Text(int x, int y, int color)
-{
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = color;
 	this->Parent = nullptr;
 }
 /*
@@ -149,12 +105,71 @@ Text::Text(int x, int y, string text, int color)
 文本的构造函数
 参数：	x: 起点X坐标
 		y: 起点Y坐标
+		parent: 父组件的位置信息
+返回：	Text实例
+*/
+Text::Text(int x, int y, Component* parent)
+{
+	this->Str = "";
+	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	this->Parent = parent;
+}
+/*
+文本的构造函数
+参数：	x: 起点X坐标
+		y: 起点Y坐标
+		parent: 父组件的位置信息
+		color: 文本颜色
+返回：	Text实例
+*/
+Text::Text(int x, int y, Component* parent, int color)
+{
+	this->Str = "";
+	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	this->Color = color;
+	this->Parent = parent;
+}
+/*
+文本的构造函数
+参数：	x: 起点X坐标
+		y: 起点Y坐标
+		text: 文本内的字符串
+		parent: 父组件的位置信息
+返回：	Text实例
+*/
+Text::Text(int x, int y, Component* parent, const char* text)
+{
+	this->Str = text;
+	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	this->Parent = parent;
+}
+/*
+文本的构造函数
+参数：	x: 起点X坐标
+		y: 起点Y坐标
+		text: 文本内的字符串
+		parent: 父组件的位置信息
+返回：	Text实例
+*/
+Text::Text(int x, int y, Component* parent, string text)
+{
+	this->Str = text;
+	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	this->Parent = parent;
+}
+/*
+文本的构造函数
+参数：	x: 起点X坐标
+		y: 起点Y坐标
 		text: 文本内的字符串
 		color: 文本颜色
 		parent: 父组件的位置信息
 返回：	Text实例
 */
-Text::Text(int x, int y, const char* text, int color, Component* parent)
+Text::Text(int x, int y, Component* parent, const char* text, int color)
 {
 	this->Str = text;
 	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
@@ -170,7 +185,7 @@ Text::Text(int x, int y, const char* text, int color, Component* parent)
 		parent: 父组件的位置信息
 返回：	Text实例
 */
-Text::Text(int x, int y, string text, int color, Component* parent)
+Text::Text(int x, int y, Component* parent, string text, int color)
 {
 	this->Str = text;
 	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
@@ -193,6 +208,7 @@ string Text::GetStr()
 */
 void Text::SetStr(string str)
 {
+	Clear();
 	this->Str = str;
 	Draw();
 }
@@ -227,6 +243,15 @@ void Text::Focus()
 	}
 }
 
+void Text::Input()
+{
+	this->Focus();
+	string buf;
+	// you can replace cin with another INPUT procedure
+	cin >> buf;
+	SetStr(buf);
+}
+
 /*
 清空文本
 参数：	无
@@ -234,9 +259,10 @@ void Text::Focus()
 */
 void Text::Clear()
 {
-	//此处不严谨，
-	//应该以transform.Y的长度来填充文本
-	SetStr("");
+	string s(this->Str.size(), ' ');
+	this->Str = s;
+	Draw();
+	this->Str = "";
 }
 /*
 绘制文本
@@ -245,5 +271,16 @@ void Text::Clear()
 */
 void Text::Draw()
 {
-	Display::DrawLabel(this);
+	//Display::DrawLabel(this);
+	int x = this->Transform.locX;
+	int y = this->Transform.locY;
+	Component* cur = this->Parent;
+	while (cur != nullptr) {
+		x +=cur->Transform.locX;
+		y +=cur->Transform.locY << 1;
+		cur = cur->Parent;
+	}
+	Display::SetColor(this->GetColor());
+	Display::DrawString(x, y, this->GetStr());
+	Display::ResetColor();
 }

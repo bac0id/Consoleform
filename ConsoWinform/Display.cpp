@@ -34,7 +34,7 @@ COORD Display::GetCursorPos()
 参数：	visible: 光标是否可见
 返回：	无
 */
-void Display::SetCursorVisible(bool visible)
+void Display::SetCursorVisibility(bool visible)
 {
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO CursorInfo;
@@ -356,12 +356,12 @@ void Display::DrawSplitLine(SplitLine* sp)
 	}
 	//铅垂线
 	else {
-		int locX = sp->Transform.locX;
 		cout << "╦";
 		for (i = 0; i <= len; ++i) {
-			SetCursorPos(locX++, sp->Transform.locY);
+			SetCursorPos(++x, y);
 			cout << "║";
 		}
+		SetCursorPos(x, y);
 		cout << "╩";
 	}
 }

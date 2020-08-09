@@ -13,10 +13,14 @@ class Form : public Component
 public:
 	//构造器
 	Form();
-	Form(int x, int y, int startX, int startY);
-	Form(int x, int y, int startX, int startY, Text* texts, int textCnt);
+	Form(int sizeX, int sizeY, int locX, int locY);
+	Form(int sizeX, int sizeY, int locX, int locY, Text* texts, int textCnt);
+	Form(int sizeX, int sizeY, int locX, int locY, Component* parent);
+	Form(int sizeX, int sizeY, int locX, int locY, Component* parent, Text* texts, int textCnt);
 	Form(Rect* transform);
 	Form(Rect* transform, Text* texts, int textCnt);
+	Form(Rect* transform, Component* parent);
+	Form(Rect* transform, Component* parent, Text* texts, int textCnt);
 
 	//文本
 	Text* Texts;
