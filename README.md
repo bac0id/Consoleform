@@ -48,7 +48,7 @@ The following example shows that `Form` is able to be nested. With some complex 
 Display::SetCursorVisibility(false);
 // Initialize
 Text* txsProf = new Text[9]{
-	Text(2, 20,	"Player Profile"),
+	Text(2, 20, "Player Profile"),
 	Text(4, 20, "Tanaka"),
 	Text(5, 20, "Tokyo, Japan"),z
 	Text(7, 20, "I love anime and games!"),
