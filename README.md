@@ -33,6 +33,7 @@ for (;;) {
 	else {
 		fmLogin->Texts[5].SetStr("Incorrect input!");
 		fmLogin->Texts[5].SetColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+		// Clear those 2 Texts for input
 		fmLogin->Texts[3].Clear();
 		fmLogin->Texts[4].Clear();
 	}
