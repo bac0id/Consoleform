@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __SPLITLINE_H
 #define __SPLITLINE_H
+#include <new>
 #include <iostream>
 #include "Display.h";
 #include "Component.h"

@@ -1,5 +1,4 @@
 #include <string>
-
 #include "Text.h"
 #include "Display.h"
 using namespace std;
@@ -10,10 +9,11 @@ using namespace std;
 */
 Text::Text()
 {
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, 0, 0 };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = nullptr;
+	//this->Str = "";
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, 0, 0 };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = nullptr;
+	new (this)Text(0, 0, nullptr, "", (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -23,10 +23,11 @@ Text::Text()
 */
 Text::Text(int x, int y)
 {
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = nullptr;
+	//this->Str = "";
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = nullptr;
+	new (this)Text(x,y, nullptr, "", (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -37,10 +38,12 @@ Text::Text(int x, int y)
 */
 Text::Text(int x, int y, int color)
 {
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = color;
-	this->Parent = nullptr;
+	//this->Str = "";
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = color;
+	//this->Parent = nullptr;
+	//new (this)Text(x, y, nullptr, "", color);
+	new (this)Text(x, y, nullptr, "", color);
 }
 /*
 文本的构造函数
@@ -52,10 +55,11 @@ Text::Text(int x, int y, int color)
 Text::Text(int x, int y, const char* text)
 {
 	//this->Str = string(text);
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = nullptr;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = nullptr;
+	new (this)Text(x, y, nullptr, text, (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -66,10 +70,11 @@ Text::Text(int x, int y, const char* text)
 */
 Text::Text(int x, int y, string text)
 {
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT,x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = nullptr;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT,x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = nullptr;
+	new (this)Text(x, y, nullptr, text, (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -81,10 +86,11 @@ Text::Text(int x, int y, string text)
 */
 Text::Text(int x, int y, const char* text, int color)
 {
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = color;
-	this->Parent = nullptr;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = color;
+	//this->Parent = nullptr;
+	new (this)Text(x, y, nullptr, text, color);
 }
 /*
 文本的构造函数
@@ -96,10 +102,11 @@ Text::Text(int x, int y, const char* text, int color)
 */
 Text::Text(int x, int y, string text, int color)
 {
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = color;
-	this->Parent = nullptr;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = color;
+	//this->Parent = nullptr;
+	new (this)Text(x, y, nullptr, text, color);
 }
 /*
 文本的构造函数
@@ -110,10 +117,11 @@ Text::Text(int x, int y, string text, int color)
 */
 Text::Text(int x, int y, Component* parent)
 {
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
+	//this->Str = "";
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = parent;
+	new (this)Text(x, y, parent, "", (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -125,10 +133,11 @@ Text::Text(int x, int y, Component* parent)
 */
 Text::Text(int x, int y, Component* parent, int color)
 {
-	this->Str = "";
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = color;
-	this->Parent = parent;
+	//this->Str = "";
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = color;
+	//this->Parent = parent;
+	new (this)Text(x, y, parent, "", color);
 }
 /*
 文本的构造函数
@@ -140,10 +149,11 @@ Text::Text(int x, int y, Component* parent, int color)
 */
 Text::Text(int x, int y, Component* parent, const char* text)
 {
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = parent;
+	new (this)Text(x, y, parent, text, (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数
@@ -155,10 +165,11 @@ Text::Text(int x, int y, Component* parent, const char* text)
 */
 Text::Text(int x, int y, Component* parent, string text)
 {
-	this->Str = text;
-	this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
-	this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
-	this->Parent = parent;
+	//this->Str = text;
+	//this->Transform = Rect{ 0, TEXT_WIDTH_DEFAULT, x, y };
+	//this->Color = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN;
+	//this->Parent = parent;
+	new (this)Text(x, y, parent, text, (int)ConsoleFGColor::White);
 }
 /*
 文本的构造函数

@@ -2,6 +2,8 @@
 #ifndef __Text_h
 #define __Text_h
 #include <string>
+#include <new>
+#include "ConsoleColor.h"
 #include "Component.h"
 #define TEXT_WIDTH_DEFAULT 16
 using namespace std;

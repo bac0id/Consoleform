@@ -141,18 +141,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ConsoleColor.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Form.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SplitLine.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Form.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="SplitLine.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

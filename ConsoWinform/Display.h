@@ -3,6 +3,7 @@
 #define __DISPLAY_H
 #include <string>
 #include <Windows.h>
+#include "ConsoleColor.h"
 #include "Rect.h"
 #include "Form.h"
 #include "Text.h"

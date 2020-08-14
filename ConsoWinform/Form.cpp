@@ -10,10 +10,8 @@ using namespace std;
 */
 Form::Form()
 {
-	this->Transform = Rect{ 0, 0, 0, 0 };
-	this->Parent = nullptr;
-	this->Texts = nullptr;
-	this->TextCnt = 0;
+	Rect r{ 0, 0, 0, 0 };
+	new (this)Form(r, nullptr, nullptr, 0);
 }
 /*
 窗口类的构造函数
@@ -25,10 +23,8 @@ Form::Form()
 */
 Form::Form(int sizeX, int sizeY, int locX, int locY)
 {
-	this->Transform = Rect{ sizeX, sizeY, locX, locY };
-	this->Parent = nullptr;
-	this->Texts = nullptr;
-	this->TextCnt = 0;
+	Rect r{ sizeX, sizeY, locX, locY };
+	new (this)Form(r, nullptr, nullptr, 0);
 }
 /*
 窗口类的构造函数
@@ -42,42 +38,38 @@ Form::Form(int sizeX, int sizeY, int locX, int locY)
 */
 Form::Form(int sizeX, int sizeY, int locX, int locY, Text* texts, int textCnt)
 {
-	this->Transform = Rect{ sizeX, sizeY, locX, locY };
-	this->Parent = nullptr;
-	this->Texts = texts;
-	for (int i = 0; i < textCnt; ++i) {
-		(texts + i)->Parent = this;
-	}
-	this->TextCnt = textCnt;
+	Rect r{ sizeX, sizeY, locX, locY };
+	new (this)Form(r, nullptr, texts, textCnt);
 }
 Form::Form(int sizeX, int sizeY, int locX, int locY, Component* parent)
 {
-	this->Transform = Rect{ sizeX, sizeY, locX, locY };
-	this->Parent = parent;
-	this->Texts = nullptr;
-	this->TextCnt = 0;
+	//this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	//this->Parent = parent;
+	//this->Texts = nullptr;
+	//this->TextCnt = 0;
+	Rect r{ sizeX, sizeY, locX, locY };
+	new (this)Form(r, parent, nullptr, 0);
 }
 Form::Form(int sizeX, int sizeY, int locX, int locY, Component* parent, Text* texts, int textCnt)
 {
-	this->Transform = Rect{ sizeX, sizeY, locX, locY };
-	this->Parent = parent;
-	this->Texts = texts;
-	for (int i = 0; i < textCnt; ++i) {
-		(texts + i)->Parent = this;
-	}
-	this->TextCnt = textCnt;
+	//this->Transform = Rect{ sizeX, sizeY, locX, locY };
+	//this->Parent = parent;
+	//this->Texts = texts;
+	//for (int i = 0; i < textCnt; ++i) {
+	//	(texts + i)->Parent = this;
+	//}
+	//this->TextCnt = textCnt;
+	Rect r{ sizeX, sizeY, locX, locY };
+	new (this)Form(r, parent, texts, textCnt);
 }
 /*
 窗口类的构造函数
 参数：	transform: 位置信息
 返回：	窗口实例。
 */
-Form::Form(Rect* transform)
+Form::Form(Rect& transform)
 {
-	this->Transform = *transform;
-	this->Parent = nullptr;
-	this->Texts = nullptr;
-	this->TextCnt = 0;
+	new (this)Form(transform, nullptr, nullptr, 0);
 }
 /*
 窗口类的构造函数
@@ -86,26 +78,18 @@ Form::Form(Rect* transform)
 		textCnt: 窗口内的文本数
 返回：	窗口实例。
 */
-Form::Form(Rect* transform, Text* texts, int textCnt)
+Form::Form(Rect& transform, Text* texts, int textCnt)
 {
-	this->Transform = *transform;
-	this->Parent = nullptr;
-	this->Texts = texts;
-	for (int i = 0; i < textCnt; ++i) {
-		(texts + i)->Parent = this;
-	}
-	this->TextCnt = textCnt;
+	new (this)Form(transform, nullptr, texts, textCnt);
 }
-Form::Form(Rect* transform, Component* parent)
+Form::Form(Rect& transform, Component* parent)
 {
-	this->Transform = *transform;
-	this->Parent = parent;
-	this->Texts = nullptr;
-	this->TextCnt = 0;
+
+	new (this)Form(transform, parent, nullptr, 0);
 }
-Form::Form(Rect* transform, Component* parent, Text* texts, int textCnt)
+Form::Form(Rect& transform, Component* parent, Text* texts, int textCnt)
 {
-	this->Transform = *transform;
+	this->Transform = transform;
 	this->Parent = parent;
 	this->Texts = texts;
 	for (int i = 0; i < textCnt; ++i) {
