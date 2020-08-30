@@ -10,8 +10,7 @@ using namespace std;
 /// </summary>
 /// <param name="x">行</param>
 /// <param name="y">列</param>
-void Display::SetCursorPos(int x, int y)
-{
+void Display::SetCursorPos(int x, int y) {
 	//x和y互换一下，方便编程
 	COORD coord = { y,x };
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -22,8 +21,7 @@ void Display::SetCursorPos(int x, int y)
 参数：	无
 返回：	表示光标坐标的COORD型。
 */
-COORD Display::GetCursorPos()
-{
+COORD Display::GetCursorPos() {
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO pBuffer;
 	GetConsoleScreenBufferInfo(hout, &pBuffer);
@@ -34,8 +32,7 @@ COORD Display::GetCursorPos()
 参数：	visible: 光标是否可见
 返回：	无
 */
-void Display::SetCursorVisibility(bool visible)
-{
+void Display::SetCursorVisibility(bool visible) {
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO CursorInfo;
 	GetConsoleCursorInfo(hout, &CursorInfo);
@@ -48,13 +45,12 @@ void Display::SetCursorVisibility(bool visible)
 		y: 列
 返回：	无
 */
-void Display::SetConsoleSize(int x, int y)
-{
+void Display::SetConsoleSize(int x, int y) {
 	////x和y互换一下，方便编程
 	//SMALL_RECT size = { y,x };
 	//HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	//SetConsoleWindowInfo(hout, true, &size);
-	char szStrCmd[32];
+	char szStrCmd[ 32 ];
 	sprintf(szStrCmd, "mode con lines=%d cols=%d", x, y);
 	system(szStrCmd);
 }
@@ -63,14 +59,12 @@ void Display::SetConsoleSize(int x, int y)
 参数：	color: 颜色
 返回：	无
 */
-void Display::SetColor(int color)
-{
+void Display::SetColor(int color) {
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	//auto a = FOREGROUND_RED
 	SetConsoleTextAttribute(hout, color);
 }
-void Display::ResetColor()
-{
+void Display::ResetColor() {
 	SetColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
 }
 /*
@@ -78,8 +72,7 @@ void Display::ResetColor()
 参数：	无
 返回：	无
 */
-void Display::Clear()
-{
+void Display::Clear() {
 	system("cls");
 }
 /*
@@ -88,8 +81,7 @@ void Display::Clear()
 		y: 宽度
 返回：	空
 */
-void Display::DrawRect(int x, int y)
-{
+void Display::DrawRect(int x, int y) {
 	DrawRect(x, y, 0, 0);
 }
 /*
@@ -100,8 +92,7 @@ void Display::DrawRect(int x, int y)
 		offsetY: 起始点Y坐标
 返回：	空
 */
-void Display::DrawRect(int x, int y, int offsetX, int offsetY)
-{
+void Display::DrawRect(int x, int y, int offsetX, int offsetY) {
 	DrawRect(x, y, offsetX, offsetY, false);
 }
 /*
@@ -113,8 +104,7 @@ void Display::DrawRect(int x, int y, int offsetX, int offsetY)
 		fill: 是否填充内部
 返回：	空
 */
-void Display::DrawRect(int x, int y, int offsetX, int offsetY, bool fill)
-{
+void Display::DrawRect(int x, int y, int offsetX, int offsetY, bool fill) {
 	int i;
 	//1个大字符占2格
 	y <<= 1, offsetY <<= 1;
@@ -133,8 +123,7 @@ void Display::DrawRect(int x, int y, int offsetX, int offsetY, bool fill)
 			}
 			cout << "║";
 		}
-	}
-	else {
+	} else {
 		for (i = 1; i <= x; ++i) {
 			SetCursorPos(offsetX + i, offsetY);
 			cout << "║";
@@ -153,8 +142,7 @@ void Display::DrawRect(int x, int y, int offsetX, int offsetY, bool fill)
 参数：	rect: 指定1个矩形
 返回：	空
 */
-void Display::DrawRect(Rect* rect)
-{
+void Display::DrawRect(Rect* rect) {
 	DrawRect(rect->sizeX, rect->sizeY, rect->locX, rect->locY);
 }
 /*
@@ -163,8 +151,7 @@ void Display::DrawRect(Rect* rect)
 		fill: 是否填充内部
 返回：	空
 */
-void Display::DrawRect(Rect* rect, bool fill)
-{
+void Display::DrawRect(Rect* rect, bool fill) {
 	DrawRect(rect->sizeX, rect->sizeY, rect->locX, rect->locY, fill);
 }
 /*
@@ -174,8 +161,7 @@ void Display::DrawRect(Rect* rect, bool fill)
 		str: 字符串
 返回：	无
 */
-void Display::DrawString(int x, int y, char* str)
-{
+void Display::DrawString(int x, int y, char* str) {
 	SetCursorPos(x, y);
 	cout << str;
 }
@@ -186,8 +172,7 @@ void Display::DrawString(int x, int y, char* str)
 		str: 字符串
 返回：	无
 */
-void Display::DrawString(int x, int y, string str)
-{
+void Display::DrawString(int x, int y, string str) {
 	SetCursorPos(x, y);
 	cout << str;
 }
@@ -199,8 +184,7 @@ void Display::DrawString(int x, int y, string str)
 		str: 字符串
 返回：	无
 */
-void Display::DrawString(Rect* rect, int x, int y, char* str)
-{
+void Display::DrawString(Rect* rect, int x, int y, char* str) {
 	DrawString(rect->locX + x, (rect->locY << 1) + y, str);
 	//SetCursor(rect->startX + x, (rect->startY << 1) + y);
 	//cout << str;
@@ -213,8 +197,7 @@ void Display::DrawString(Rect* rect, int x, int y, char* str)
 		str: 字符串
 返回：	无
 */
-void Display::DrawString(Rect* rect, int x, int y, string str)
-{
+void Display::DrawString(Rect* rect, int x, int y, string str) {
 	DrawString(rect->locX + x, (rect->locY << 1) + y, str);
 	//SetCursor(rect->startX + x, (rect->startY<<1) + y);
 	//cout << str;
@@ -225,8 +208,7 @@ void Display::DrawString(Rect* rect, int x, int y, string str)
 		label: 文本
 返回：	无
 */
-void Display::DrawLabel(Text* label)
-{
+void Display::DrawLabel(Text* label) {
 	//if (!label->Parent) {
 	//	SetColor(label->GetColor());
 	//	DrawString(label->Transform.locX, label->Transform.locY, label->GetStr());
@@ -242,7 +224,7 @@ void Display::DrawLabel(Text* label)
 		y += label->Parent->Transform.locY << 1;
 	}
 	SetColor(label->GetColor());
-	DrawString(x,y, label->GetStr());
+	DrawString(x, y, label->GetStr());
 	ResetColor();
 }
 /*
@@ -251,8 +233,7 @@ void Display::DrawLabel(Text* label)
 		label: 文本
 返回：	无
 */
-void Display::DrawLabel(Rect* rect, Text* label)
-{
+void Display::DrawLabel(Rect* rect, Text* label) {
 	SetColor(label->GetColor());
 	DrawString(rect->locX + label->Transform.locX,
 		(rect->locY << 1) + label->Transform.locY, label->GetStr());
@@ -337,8 +318,7 @@ void Display::DrawLabel(Rect* rect, Text* label)
 //	}
 //}
 
-void Display::DrawSplitLine(SplitLine* sp)
-{
+void Display::DrawSplitLine(SplitLine* sp) {
 	int x = sp->Transform.locX;
 	int y = sp->Transform.locY;
 	if (sp->Parent) {

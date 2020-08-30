@@ -5,48 +5,40 @@ Point Point::Down(1, 0);
 Point Point::Left(0, -1);
 Point Point::Right(0, 1);
 
-Point::Point()
-{
+Point::Point() {
 	this->X = this->Y = 0;
 }
 
-Point::Point(int x, int y)
-{
+Point::Point(int x, int y) {
 	this->X = x;
 	this->Y = y;
 }
 
-Point& Point::operator+(const Point& a)
-{
+Point& Point::operator+(const Point& a) {
 	Point p(this->X + a.X, this->Y + a.Y);
 	return p;
 }
 
-Point& Point::operator-()
-{
+Point& Point::operator-() {
 	Point p(-this->X, -this->Y);
 	return p;
 }
 
-Point& Point::operator-(const Point& a)
-{
+Point& Point::operator-(const Point& a) {
 	Point p(this->X - a.X, this->Y - a.Y);
 	return p;
 }
 
-Point& Point::operator*(int n)
-{
+Point& Point::operator*(int n) {
 	Point p(this->X * n, this->Y * n);
 	return p;
 }
 
-bool Point::operator==(const Point& a)
-{
+bool Point::operator==(const Point& a) {
 	return this->X == a.X && this->Y == a.Y;
 }
 
-bool Point::operator!=(const Point& a)
-{
+bool Point::operator!=(const Point& a) {
 	return (this->X != a.X) || (this->Y != a.Y);
 }
 

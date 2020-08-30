@@ -1,6 +1,6 @@
 #include "Component.h"
 
-const char* Component::ComponentOrderTable[] =
+const char* Control::ControlsOrderTable[] =
 {
 	typeid(Form).name(),
 	typeid(Text).name(),

@@ -8,7 +8,7 @@
 #define TEXT_WIDTH_DEFAULT 16
 using namespace std;
 //文本类
-class Text : public Component
+class Text : public Control
 {
 public:
 	//构造器
@@ -19,12 +19,12 @@ public:
 	Text(int x, int y, string text);
 	Text(int x, int y, const char* text, int color);
 	Text(int x, int y, string text, int color);
-	Text(int x, int y, Component* parent);
-	Text(int x, int y, Component* parent, int color);
-	Text(int x, int y, Component* parent, const char* text);
-	Text(int x, int y, Component* parent, string text);
-	Text(int x, int y, Component* parent, const char* text, int color);
-	Text(int x, int y, Component* parent, string text, int color);
+	Text(int x, int y, Control* parent);
+	Text(int x, int y, Control* parent, int color);
+	Text(int x, int y, Control* parent, const char* text);
+	Text(int x, int y, Control* parent, string text);
+	Text(int x, int y, Control* parent, const char* text, int color);
+	Text(int x, int y, Control* parent, string text, int color);
 	//得到文本内的字符串
 	string GetStr();
 	//设置文本内的字符串

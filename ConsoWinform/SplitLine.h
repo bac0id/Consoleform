@@ -5,12 +5,12 @@
 #include <iostream>
 #include "Display.h";
 #include "Component.h"
-class SplitLine : public Component
+class SplitLine : public Control
 {
 public:
 	SplitLine(bool isHorizon, int offset, int length);
-	SplitLine(bool isHorizon, int offset, Component* parent);
-	SplitLine(bool isHorizon, int offset, Component* parent, int length);
+	SplitLine(bool isHorizon, int offset, Control* parent);
+	SplitLine(bool isHorizon, int offset, Control* parent, int length);
 	int GetLength();
 	bool IsHorizon();
 	void Draw();

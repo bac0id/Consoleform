@@ -6,16 +6,16 @@
 #include "Text.h"
 #include "SplitLine.h"
 #include "Rect.h"
-class Component
+class Control
 {
 public:
 	//位置信息
 	Rect Transform;
 	//父组件位置
-	Component* Parent;
+	Control* Parent;
 	//显示组件
 	virtual void Draw() = 0;
 private:
-	static const char* ComponentOrderTable[];
+	static const char* ControlsOrderTable[];
 };
 #endif // !__COMPONENT_H

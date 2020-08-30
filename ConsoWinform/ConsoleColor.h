@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __CONSOLECOLOR_H
-#define __CONSOLECOLOR_H
+#ifndef __CONSOLE_COLOR_H
+#define __CONSOLE_COLOR_H
 #include <Windows.h>
 enum class ConsoleFGColor
 {
@@ -27,4 +27,4 @@ enum class ConsoleBGColor
     HighWhite = BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE,
     Black = 0,
 };
-#endif // !__CONSOLECOLOR_H
+#endif // !__CONSOLE_COLOR_H

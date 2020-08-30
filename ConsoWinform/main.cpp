@@ -1,14 +1,12 @@
 #include <conio.h>
 #include "Display.h"
 using namespace std;
-void run_example_1()
-{
-	// Show the cursor
+void run_example_1() {
 	// The account and password of a certain user
 	const string acc = "user1";
 	const string pw = "123123";
 	// Initialize the Login window
-	Text* txsLogin = new Text[6]{
+	Text* txsLogin = new Text[ 6 ]{
 		Text(2, 12,	"Login"),
 		Text(4, 4,	"Username: "),
 		Text(5, 4,	"Password: "),
@@ -19,31 +17,30 @@ void run_example_1()
 	Form* fmLogin = new Form(8, 13, 2, 10, txsLogin, 6);
 	fmLogin->Draw(false);
 	for (;;) {
+		// Show the cursor
 		Display::SetCursorVisibility(true);
 		// Input strings and save it into a text instance
-		fmLogin->Texts[3].Input();
-		fmLogin->Texts[4].Input();
+		fmLogin->Texts[ 3 ].Input();
+		fmLogin->Texts[ 4 ].Input();
 		Display::SetCursorVisibility(false);
 		// Check inputs
-		if (fmLogin->Texts[3].GetStr() == acc && fmLogin->Texts[4].GetStr() == pw) {
-			fmLogin->Texts[5].SetStr("Login successfully.");
-			fmLogin->Texts[5].SetColor((int)ConsoleFGColor::Green);
+		if (fmLogin->Texts[ 3 ].GetStr() == acc && fmLogin->Texts[ 4 ].GetStr() == pw) {
+			fmLogin->Texts[ 5 ].SetStr("Login successfully.");
+			fmLogin->Texts[ 5 ].SetColor((int)ConsoleFGColor::Green);
 			break;
-		}
-		else {
-			fmLogin->Texts[5].SetStr("Incorrect input!");
-			fmLogin->Texts[5].SetColor((int)ConsoleFGColor::Red);
-			fmLogin->Texts[3].Clear();
-			fmLogin->Texts[4].Clear();
+		} else {
+			fmLogin->Texts[ 5 ].SetStr("Incorrect input!");
+			fmLogin->Texts[ 5 ].SetColor((int)ConsoleFGColor::Red);
+			fmLogin->Texts[ 3 ].Clear();
+			fmLogin->Texts[ 4 ].Clear();
 		}
 	}
 }
-void run_example_2()
-{
+void run_example_2() {
 	// Hide the cursor
 	Display::SetCursorVisibility(false);
 	// Initialize
-	Text* txsProf = new Text[9]{
+	Text* txsProf = new Text[ 9 ]{
 		Text(2, 20,	"Player Profile"),
 		Text(4, 20, "Tanaka"),
 		Text(5, 20, "Tokyo, Japan"),
@@ -56,7 +53,7 @@ void run_example_2()
 		Text(20, 13, "report this cheater plz"),
 	};
 	Form* fmProf = new Form(22, 22, 2, 5, txsProf, 9);
-	Text* txsAvatar = new Text[3]{
+	Text* txsAvatar = new Text[ 3 ]{
 		Text(2, 5, " ", (int)ConsoleBGColor::Green),
 		Text(2, 9, " ", (int)ConsoleBGColor::Green),
 		Text(4, 7, "__", (int)ConsoleFGColor::Green),
@@ -73,9 +70,10 @@ void run_example_2()
 	fmCmt1->Draw(false);
 	fmCmt2->Draw(false);
 }
-int main()
-{
+int main() {
 	run_example_1();
+
+
 	_getch();
 	return 0;
 }
