@@ -1,4 +1,4 @@
-# ConsoWinform
+# Consoleform
 A console version of simplified Winform / 控制台里的简易 Winform
 ## Examples
 ### Login Form
@@ -42,7 +42,7 @@ for (;;) {
 ```
 The output will be like...
 
-![Picture of a classic login form](https://github.com/bac0id/ConsoWinform/blob/master/screenshot_example_1.png)
+![Picture of a classic login form](https://github.com/bac0id/Consoleform/blob/master/screenshot_example_1.png)
 ### Player Profile
 The following example shows that `Form` is able to be nested. With some complex combinations, the possibilities are limitless.
 ```C++
@@ -81,4 +81,4 @@ fmCmt2->Draw(false);
 ```
 And the result output is ...
 
-![Picture of a player profile form](https://github.com/bac0id/ConsoWinform/blob/master/screenshot_example_2.png)
+![Picture of a player profile form](https://github.com/bac0id/Consoleform/blob/master/screenshot_example_2.png)
