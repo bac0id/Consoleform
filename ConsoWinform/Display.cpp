@@ -3,7 +3,7 @@
 #include <Windows.h>
 
 #include "Display.h"
-#include "Component.h"
+#include "Control.h"
 using namespace std;
 /// <summary>
 /// 设置光标坐标
@@ -51,7 +51,7 @@ void Display::SetConsoleSize(int x, int y) {
 	//HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	//SetConsoleWindowInfo(hout, true, &size);
 	char szStrCmd[ 32 ];
-	sprintf(szStrCmd, "mode con lines=%d cols=%d", x, y);
+	sprintf_s(szStrCmd, "mode con lines=%d cols=%d", x, y);
 	system(szStrCmd);
 }
 /*
@@ -219,7 +219,7 @@ void Display::DrawLabel(Text* label) {
 
 	int x = label->Transform.locX;
 	int y = label->Transform.locY;
-	if (label->Parent) {
+	if (label->Parent!=nullptr) {
 		x += label->Parent->Transform.locX;
 		y += label->Parent->Transform.locY << 1;
 	}

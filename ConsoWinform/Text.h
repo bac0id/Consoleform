@@ -4,9 +4,11 @@
 #include <string>
 #include <new>
 #include "ConsoleColor.h"
-#include "Component.h"
+#include "Control.h"
 #define TEXT_WIDTH_DEFAULT 16
+
 using namespace std;
+
 //ÎÄ±¾Àà
 class Text : public Control
 {

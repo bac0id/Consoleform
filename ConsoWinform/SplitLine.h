@@ -4,7 +4,7 @@
 #include <new>
 #include <iostream>
 #include "Display.h";
-#include "Component.h"
+#include "Control.h"
 class SplitLine : public Control
 {
 public:

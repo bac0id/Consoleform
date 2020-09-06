@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "Rect.h"
-#include "Component.h"
+#include "Control.h"
 #include "Text.h"
 #include "SplitLine.h"
 //´°¿ÚÀà
