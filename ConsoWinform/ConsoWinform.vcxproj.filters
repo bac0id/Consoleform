@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\ListViewUtil">
+      <UniqueIdentifier>{1898915a-9056-4e3a-b9fe-f20c102db087}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rect.h">
@@ -44,6 +47,15 @@
     </ClInclude>
     <ClInclude Include="Control.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TextAlignment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnHeader.h">
+      <Filter>头文件\ListViewUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnHeaderCollection.h">
+      <Filter>头文件\ListViewUtil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

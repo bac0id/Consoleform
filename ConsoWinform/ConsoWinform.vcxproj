@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ColumnHeader.h" />
+    <ClInclude Include="ColumnHeaderCollection.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="ConsoleColor.h" />
     <ClInclude Include="Display.h" />
@@ -150,6 +152,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SplitLine.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="TextAlignment.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>

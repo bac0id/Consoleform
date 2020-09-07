@@ -9,11 +9,9 @@
 
 using namespace std;
 
-//文本类
 class Text : public Control
 {
 public:
-	//构造器
 	Text();
 	Text(int x, int y);
 	Text(int x, int y, int color);
