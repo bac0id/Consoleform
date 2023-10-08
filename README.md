@@ -1,10 +1,12 @@
 # Consoleform
-A console version of simplified Winform / 控制台里的简易 Winform
+
+A simplified console version of Windows Forms(WinForms) is developed since WinForms by Microsoft doesn't support console users. 
+
 ## Examples
 ### Login Form
-This simple example will show you how a `Form` is created and the interactivity of it as well.
+This example demonstrates the creation of a 'Form' and its interactivity. 
 ```c++
-// The account and password of a certain user
+// The account and password of a specific user
 const string acc = "user1";
 const string pw = "123123";
 // Initialize the Login window
@@ -40,11 +42,14 @@ for (;;) {
 }
 
 ```
-The output will be like...
+The output is...
 
 ![Picture of a classic login form](https://github.com/bac0id/Consoleform/blob/master/screenshot_example_1.png)
+
 ### Player Profile
-The following example shows that `Form` is able to be nested. With some complex combinations, the possibilities are limitless.
+
+This example illustrates that `Form` is nestable. With complicated combinations the possibilities are endless.
+
 ```C++
 // Hide the cursor
 Display::SetCursorVisibility(false);
@@ -71,14 +76,13 @@ Form* fmAvatar = new Form(5, 5, 2, 2, fmProf, txsAvatar, 3);
 SplitLine* sp = new SplitLine(true, 10, fmProf);
 Form* fmCmt1 = new Form(2, 2, 14, 2, fmProf);
 Form* fmCmt2 = new Form(2, 2, 18, 2, fmProf);
-// Draw these objects in a certain layer order
-// please consider the split line
+// Draw these objects in a specific layer order
 fmProf->Draw(false);
 fmAvatar->Draw(false);
 sp->Draw();
 fmCmt1->Draw(false);
 fmCmt2->Draw(false);
 ```
-And the result output is ...
+The output is...
 
 ![Picture of a player profile form](https://github.com/bac0id/Consoleform/blob/master/screenshot_example_2.png)
