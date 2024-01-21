@@ -1,6 +1,6 @@
 # Consoleform
 
-A simplified console version of Windows Forms(WinForms) is developed since WinForms by Microsoft doesn't support console users. 
+A simplified console version of Windows Forms(WinForms) is developed since WinForms by Microsoft doesn't support CLI. 
 
 ## Examples
 ### Login Form
